@@ -40,9 +40,7 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
             <tr
               data-cy="person"
               className={
-                person.slug === selectedSlug
-                  ? 'has-background-warning'
-                  : ''
+                person.slug === selectedSlug ? 'has-background-warning' : ''
               }
               key={person.slug}
             >
@@ -54,13 +52,9 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
               <td>{person.born}</td>
               <td>{person.died}</td>
 
-              <td>
-                {mother ? <PersonLink person={mother} /> : '-'}
-              </td>
+              <td>{mother ? <PersonLink person={mother} /> : '-'}</td>
 
-              <td>
-                {father ? <PersonLink person={father} /> : '-'}
-              </td>
+              <td>{father ? <PersonLink person={father} /> : '-'}</td>
             </tr>
           );
         })}
