@@ -12,7 +12,7 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
       return null;
     }
 
-    return people.find(person => person.name === name) || null;
+    return people.find(person => person.name === name);
   };
 
   return (
@@ -40,7 +40,9 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
             <tr
               data-cy="person"
               className={
-                person.slug === selectedSlug ? 'has-background-warning' : ''
+                person.slug === selectedSlug
+                  ? 'has-background-warning'
+                  : ''
               }
               key={person.slug}
             >
@@ -52,9 +54,29 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
               <td>{person.born}</td>
               <td>{person.died}</td>
 
-              <td>{mother ? <PersonLink person={mother} /> : '-'}</td>
+              <td>
+                {person.motherName ? (
+                  mother ? (
+                    <PersonLink person={mother} />
+                  ) : (
+                    person.motherName
+                  )
+                ) : (
+                  '-'
+                )}
+              </td>
 
-              <td>{father ? <PersonLink person={father} /> : '-'}</td>
+              <td>
+                {person.fatherName ? (
+                  father ? (
+                    <PersonLink person={father} />
+                  ) : (
+                    person.fatherName
+                  )
+                ) : (
+                  '-'
+                )}
+              </td>
             </tr>
           );
         })}
